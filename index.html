@@ -7,21 +7,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #0a0a0a;
-	    background-image: url('https://raw.githubusercontent.com/Elarass/harrat/refs/heads/main/fond.jpg');
-   	    background-size: cover;
-   	    background-position: center;
-   	    background-repeat: no-repeat;
-	    background-attachment: scroll;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-image: url('https://raw.githubusercontent.com/Elarass/harrat/refs/heads/main/fond.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
             min-height: 100vh;
             font-family: 'Courier New', monospace;
             color: white;
-            padding: 20px;
+            position: relative;
         }
         .container {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             width: 100%;
             max-width: 900px;
@@ -58,14 +58,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>NOMBRES DE MINUTES DEPUIS SONT DÉPART</h1>
+        <h1>NOMBRES DE MINUTES DEPUIS SON DÉPART</h1>
         <div id="count">0</div>
-        <p>prochainne minute de paix, silence, bonheur, joie, allégresse dans <span id="next">--</span> secondes</p>
+        <p>prochaine minute de paix, silence, bonheur, joie, allégresse dans <span id="next">--</span> secondes</p>
     </div>
 
     <script>
-        // ✏️ CHANGER LA DATE ICI quand vous êtes prêt
-        const start = new Date('2026-05-31T22:00:00Z');
+        const START_DATE = new Date('2026-05-31T22:00:00Z');
 
         function updateCounter() {
             const now = new Date();
