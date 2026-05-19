@@ -32,7 +32,7 @@
             font-size: 8rem;
             font-weight: bold;
             color: #00aaff;
-            text-shadow: 0 0 30px #00ff8855;
+            text-shadow: 0 0 30px #00aaff55;
         }
         p {
             margin-top: 20px;
@@ -44,19 +44,10 @@
             color: #00ff88;
         }
 
-        /* RESPONSIVE MOBILE */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 0.75rem;
-                letter-spacing: 2px;
-            }
-            #count {
-                font-size: 20vw;
-            }
-            p {
-                font-size: 0.75rem;
-                letter-spacing: 1px;
-            }
+            h1 { font-size: 0.75rem; letter-spacing: 2px; }
+            #count { font-size: 20vw; }
+            p { font-size: 0.75rem; letter-spacing: 1px; }
         }
     </style>
 </head>
@@ -68,23 +59,28 @@
     </div>
 
     <script>
-        async function loadCount() {
-            const res = await fetch('/count');
-            const data = await res.json();
-            document.getElementById('count').textContent = data.count;
-        }
+        // ✏️ CHANGER LA DATE ICI quand vous êtes prêt
+        const START_DATE = new Date("2025-01-01T00:00:00");
 
-        function updateCountdown() {
+        function updateCounter() {
             const now = new Date();
+
+            if (now < START_DATE) {
+                document.getElementById('count').textContent = "0";
+                document.getElementById('next').textContent = "--";
+                return;
+            }
+
+            const diffMs = now - START_DATE;
+            const diffMinutes = Math.floor(diffMs / 60000);
+            document.getElementById('count').textContent = diffMinutes;
+
             const seconds = 59 - now.getSeconds();
             document.getElementById('next').textContent = seconds;
         }
 
-        loadCount();
-        updateCountdown();
-
-        setInterval(loadCount, 1000);
-        setInterval(updateCountdown, 1000);
+        updateCounter();
+        setInterval(updateCounter, 1000);
     </script>
 </body>
 </html>
